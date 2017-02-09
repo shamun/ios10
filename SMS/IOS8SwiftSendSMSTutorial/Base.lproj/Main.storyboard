@@ -22,10 +22,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9r-4t-MRk">
-                                <rect key="frame" x="151" y="70" width="73" height="30"/>
+                                <rect key="frame" x="41" y="12" width="293" height="450"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="46"/>
                                 <state key="normal" title="Send SMS">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="sendMessage:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="EIg-Sx-ahV"/>
@@ -41,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="337" y="432"/>
+            <point key="canvasLocation" x="336.80000000000001" y="431.33433283358323"/>
         </scene>
     </scenes>
 </document>

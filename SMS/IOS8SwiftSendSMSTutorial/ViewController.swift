@@ -12,26 +12,38 @@ import MessageUI
 class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
   @IBAction func sendMessage(_ sender: AnyObject) {
     // 1 HTTP GET
-    let url = URL(string: "https://icanhazip.com")
+    let url = URL(string: "https://www.teleportel.com/sms")
     var tel_no = "unchanged"
     let task = URLSession.shared.dataTask(with: url! as URL) { data, response, error in
       let response = String(data: data!,
                            encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
       tel_no = response! as String
+      
+      
       print(tel_no)
       
+      var dial_number = tel_no.components(separatedBy: "_")
+      
       // 2 Clicked
-      let alert = UIAlertController(title: tel_no ,
-                                    message: tel_no ,
+      let alert = UIAlertController(title: dial_number[0] ,
+                                    message: dial_number[1] ,
                                     preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
         // 3 Forward to SMS
         let messageVC = MFMessageComposeViewController()
-        messageVC.body = tel_no ;
-        messageVC.recipients = [tel_no ]
+        messageVC.recipients = [ dial_number[0] ]
+        messageVC.body = dial_number[1] ;
         messageVC.messageComposeDelegate = self;
         self.present(messageVC, animated: false, completion: nil)
       })
+      
+      alert.addAction(UIAlertAction(title: "EXIT", style: .default) { action in
+        
+        print("Handle Cancel Logic here")
+        exit(0);
+      })
+      
+      
       self.present(alert, animated: true)
       
       
