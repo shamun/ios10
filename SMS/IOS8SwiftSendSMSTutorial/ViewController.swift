@@ -23,6 +23,8 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
   func messageComposeViewController(_ controller: MFMessageComposeViewController!, didFinishWith result: MessageComposeResult) {
     
     /*
+     
+     
     switch (result) {
     case MessageComposeResult.cancelled.value:
       print("Message was cancelled")
