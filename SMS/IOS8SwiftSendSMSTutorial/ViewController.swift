@@ -11,39 +11,39 @@ import MessageUI
 
 class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
   @IBAction func sendMessage(_ sender: AnyObject) {
-    let messageVC = MFMessageComposeViewController()
-    
-    messageVC.body = "Enter a message";
-    messageVC.recipients = ["Enter tel-nr"]
-    messageVC.messageComposeDelegate = self;
-    
-    self.present(messageVC, animated: false, completion: nil)
+    // 1 HTTP GET
+    let url = URL(string: "https://icanhazip.com")
+    var tel_no = "unchanged"
+    let task = URLSession.shared.dataTask(with: url! as URL) { data, response, error in
+      let response = String(data: data!,
+                           encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+      tel_no = response! as String
+      print(tel_no)
+      
+      // 2 Clicked
+      let alert = UIAlertController(title: tel_no ,
+                                    message: tel_no ,
+                                    preferredStyle: UIAlertControllerStyle.alert)
+      alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+        // 3 Forward to SMS
+        let messageVC = MFMessageComposeViewController()
+        messageVC.body = tel_no ;
+        messageVC.recipients = [tel_no ]
+        messageVC.messageComposeDelegate = self;
+        self.present(messageVC, animated: false, completion: nil)
+      })
+      self.present(alert, animated: true)
+      
+      
+    }
+    task.resume()
   }
-  
+
   func messageComposeViewController(_ controller: MFMessageComposeViewController!, didFinishWith result: MessageComposeResult) {
-    
-    /*
-     
-     
-    switch (result) {
-    case MessageComposeResult.cancelled.value:
-      print("Message was cancelled")
-      self.dismiss(animated: true, completion: nil)
-    case MessageComposeResult.failed.value:
-      print("Message failed")
-      self.dismiss(animated: true, completion: nil)
-    case MessageComposeResult.sent.value:
-      print("Message was sent")
-     self.dismiss(animated: true, completion: nil)
-    default:
-      break;
-    }*/
-    
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
   }
 
   override func didReceiveMemoryWarning() {
@@ -53,4 +53,3 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
 
 
 }
-
